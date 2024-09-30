@@ -6,9 +6,7 @@ pygame.init()
 white = (255, 255, 255)
 yellow = (255, 255, 102)
 black = (0, 0, 0)
-red = (213, 50, 80)
 green = (0, 255, 0)
-blue = (50, 153, 213)
 dis_width = 800
 dis_height = 600
 dis = pygame.display.set_mode((dis_width, dis_height))
@@ -21,7 +19,7 @@ score_font = pygame.font.SysFont("comicsansms", 35)
 
 
 def your_score(score):
-    value = score_font.render("Ваш счёт: " + str(score), True, yellow)
+    value = score_font.render("Ваш счёт: " + str(score), True, green)
     dis.blit(value, [0, 0])
 
 
@@ -48,8 +46,8 @@ def gameLoop():
     foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
     while not game_over:
         while game_close == True:
-            dis.fill(blue)
-            message("Вы проиграли! Нажмите Q для выхода или C для повторной игры", red)
+            dis.fill(white)
+            message("Вы проиграли! Нажмите Q для выхода или C для повторной игры", black)
             your_score(Length_of_snake - 1)
             pygame.display.update()
             for event in pygame.event.get():
@@ -79,7 +77,7 @@ def gameLoop():
             game_close = True
         x1 += x1_change
         y1 += y1_change
-        dis.fill(blue)
+        dis.fill(white)
         pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
         snake_Head = []
         snake_Head.append(x1)
@@ -91,7 +89,7 @@ def gameLoop():
             if x == snake_Head:
                 game_close = True
         our_snake(snake_block, snake_List)
-        Your_score(Length_of_snake - 1)
+        your_score(Length_of_snake - 1)
         pygame.display.update()
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
